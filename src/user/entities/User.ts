@@ -8,7 +8,7 @@ export class User {
     constructor(props: Omit<User, 'id'>, id?: string) {
         Object.assign(this, props)
         
-        if (id === undefined) {
+        if (!id) {
             this.id = randomUUID()
         }
     }

@@ -1,19 +1,19 @@
-import { IUserDTO } from '../DTO/userDTO';
+import { IUserDTO } from './../DTO/userDTO';
 import { IUserRepository } from './IUserRepository';
 import prismaClient from '../../../prisma/prismaClient' 
+import { PrismaClient, Prisma } from '@prisma/client'
+
+
 
 
 export class UserRepository implements IUserRepository {
-    async create({ email, name }: IUserDTO): Promise<void> {
-        await prismaClient.user.create({
-            data: {
-                email,
-                name
-            }
-        })
-
-       
+    async create({ id, email, name }: Prisma.UserCreateInput):  Promise<void>  {
+      await prismaClient.user.create({data: {id, name, email}})
     }
+
+         
+        
+        
 
 
     update(id: string): Promise<IUserDTO> {

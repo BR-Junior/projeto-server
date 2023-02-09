@@ -7,13 +7,12 @@ import { PrismaClient, Prisma } from '@prisma/client'
 
 
 export class UserRepository implements IUserRepository {
-    async create({ id, email, name }: Prisma.UserCreateInput):  Promise<void>  {
-      await prismaClient.user.create({data: {id, name, email}})
+    
+    async create(data:Prisma.UserCreateInput):  Promise<void>  {
+        await prismaClient.user.create({data: data}) 
+        //prismaClient.user.create({data: {email, name}})
     }
-
-         
-        
-        
+    
 
 
     update(id: string): Promise<IUserDTO> {
@@ -21,15 +20,18 @@ export class UserRepository implements IUserRepository {
     }
 
 
+
     findOne(id: string): Promise<IUserDTO> {
         throw new Error('Não foi possivel achar o usuario.');
     }
+
 
 
     findAll(): Promise<IUserDTO[]> {
         throw new Error('Não foi possivel achar os usuarios.');
     }
 
+    
 
     remove(id: string): Promise<void> {
         throw new Error('Não foi possivel excluir o usuario.');

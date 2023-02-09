@@ -1,15 +1,14 @@
-import { randomUUID } from "crypto"
+import { v4 as uuid } from 'uuid'
 
 export class User {
-    public readonly id?: string 
+    public readonly id?: string | null
     public name: string
     public email: string
 
-    constructor(props: Omit<User, 'id'>, id?: string) {
-        Object.assign(this, props)
+    constructor(name: string, email: string, id?: string) {
         
-        if (!id) {
-            this.id = randomUUID()
-        }
+        this.id = id || uuid()
+        this.name = name
+        this.email = email
     }
 }
